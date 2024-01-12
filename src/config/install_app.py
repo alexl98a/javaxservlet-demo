@@ -82,7 +82,7 @@ parms = "-appname defaultapplication"
 parms += " -node " + node + " -server " + server
 parms += " -nouseMetaDataFromBinary"
 parms += " -MapWebModToVH [[.* .* default_host]]"
-app = AdminApp.install("/work/config/javax-servlets-1.0-SNAPSHOT.ear", [parms])
+app = AdminApp.install("/work/config/defaultapplication.ear", [parms])
 
 AdminConfig.save()
 
