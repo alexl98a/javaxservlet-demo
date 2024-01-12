@@ -22,7 +22,7 @@ print 'Starting Creating Connection Factories'
 
 print 'Starting Creating JDBC Providers'
 AdminConfigVar_0=AdminConfig.create('JDBCProvider', Node, [['name', 'Derby_JDBC_Provider'], ['implementationClassName', 'org.apache.derby.jdbc.EmbeddedConnectionPoolDataSource'], ['providerType', 'Derby JDBC Provider'], ['description', 'Derby embedded non-XA  JDBC Provider'], ['classpath', '${DERBY_JDBC_DRIVER_PATH}/derby.jar'], ['xa', 'false']])
-AdminConfigVar_1=AdminTask.createDatasource(AdminConfigVar_0, ["-name", "Default Datasource", "-jndiName", "DefaultDatasource", "-dataStoreHelperClassName", "com.ibm.websphere.rsadapter.DerbyDataStoreHelper", "-configureResourceProperties", "[[databaseName java.lang.String ${APP_INSTALL_ROOT}/${CELL}/defaultapplication.ear/DefaultDB] ]"])
+AdminConfigVar_1=AdminTask.createDatasource(AdminConfigVar_0, ["-name", "Default Datasource", "-jndiName", "DefaultDatasource", "-dataStoreHelperClassName", "com.ibm.websphere.rsadapter.DerbyDataStoreHelper", "-configureResourceProperties", "[[databaseName java.lang.String ${APP_INSTALL_ROOT}/${CELL}/defaultapplication.war/DefaultDB] ]"])
 AdminConfigVar_2=AdminConfig.showAttribute(AdminConfigVar_1, 'propertySet')
 AdminConfig.create('J2EEResourceProperty', AdminConfigVar_2, [['name', 'connectionAttributes'], ['type', 'java.lang.String'], ['value', 'upgrade=true']])
 AdminConfig.create('J2EEResourceProperty', AdminConfigVar_2, [['name', 'name'], ['type', 'java.lang.String'], ['value', 'Default Datasource']])
@@ -39,5 +39,5 @@ AdminConfig.create('Library', Server, [['name', 'globalSharedLibrary'], ['classP
 appServer = AdminConfig.list('ApplicationServer',Server)
 classLoader1 = AdminConfig.create('Classloader', appServer, [['mode',  'PARENT_FIRST']])
 AdminConfig.create('LibraryRef', classLoader1, [['libraryName', 'globalSharedLibrary']])
-#AdminApp.install('/path/to/defaultapplication.ear', ["-node", NodeName, "-server", "server1", "-appname", "defaultapplication.ear", "-CtxRootForWebMod", [["Default Web Application", "javax-servlets-1.0-SNAPSHOT.war,WEB-INF/web.xml", "/"]]])
+#AdminApp.install('/path/to/defaultapplication.war', ["-node", NodeName, "-server", "server1", "-appname", "defaultapplication.war", "-CtxRootForWebMod", [["Default Web Application", "javax-servlets-1.0-SNAPSHOT.war,WEB-INF/web.xml", "/"]]])
 AdminConfig.save()
