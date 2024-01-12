@@ -11,7 +11,7 @@ spec:
       claimName: shared-task-storage
   params:
   - name: repo-url
-    value: http://192.168.1.221/edualex/wastest.git
+    value: https://github.com/alexl98a/javaxservlet-demo.git
   - name: branch-name
     value: master
   - name: repo-dockerfile
